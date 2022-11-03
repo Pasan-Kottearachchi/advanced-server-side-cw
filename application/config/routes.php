@@ -56,7 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['home'] = 'home/Home/index';
 $route['challenge/(:num)'] = 'home/Home/challengeQuiz/$1';
-$route['quiz/submit'] = 'quiz/Quiz/submitQuiz';
+$route['quiz/submit'] = 'quiz/SubmitQuiz/index';
+$route['quiz/search'] = 'quiz/SearchQuiz/index';
 $route['login'] = 'login/Login/login_redirect';
 $route['signup'] = 'login/Login/signup_redirect';
 $route['login/submit'] = 'login/Login/signin';

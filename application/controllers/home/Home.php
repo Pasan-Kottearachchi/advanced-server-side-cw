@@ -4,8 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 
 	public function index() {
+		if (!$this->session->userdata('logged_in')) {
+			redirect(base_url('login'));
+		}
 		$this->load->model('Quiz_Model/QuizModel');
 		$data['details'] = $this->QuizModel->get_all_quizzes();
+		$this->load->view('navigation/navbar', array('show_search_bar' => true, 'show_action_button' => true));
 		$this->load->view('home/home_page', $data);
 	}
 
@@ -37,6 +41,7 @@ class Home extends CI_Controller {
 		$response['quiz'] = $quiz;
 
 
+		$this->load->view('navigation/navbar', array('show_search_bar' => false, 'show_action_button' => false));
 		$this->load->view('quizes/participate_quiz', array("response"=>$response));
 	}
 }

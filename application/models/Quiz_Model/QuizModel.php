@@ -35,6 +35,7 @@ class QuizModel extends CI_Model {
 		$query = $this->db->query($sql, array('quiz_question_id' => $ids));
 		return $query->result();
 	}
+
 	function validate_correct_quiz_answer($quiz_question_id, $quiz_answer_id) {
 		$sql = "SELECT quiz_answer_id, description, is_correct, quiz_question_id
 				FROM quiz_answer 
@@ -44,5 +45,25 @@ class QuizModel extends CI_Model {
 			array('quiz_question_id' => $quiz_question_id, 'quiz_answer_id' => $quiz_answer_id)
 		);
 		return $query->row();
+	}
+
+	function search_quiz($search) {
+		$sql = "SELECT quiz_id, title, created_by, user.name
+				FROM quiz
+				JOIN user ON user.user_id = quiz.created_by
+				WHERE title LIKE ? OR name LIKE ?;";
+		$query = $this->db->query($sql, array('%'.$search.'%', '%'.$search.'%'));
+		return $query->result();
+	}
+
+//	get all quiz answers for a given quiz
+	function get_quiz_answers_by_quiz_id($id) {
+		$sql = "SELECT quiz_answer_id, description, is_correct, quiz_question_id
+				FROM quiz_answer 
+				WHERE quiz_question_id IN (
+					SELECT quiz_question_id FROM quiz_question WHERE quiz_id = ?
+				) and archived = 0;";
+		$query = $this->db->query($sql, array('quiz_id' => $id));
+		return $query->result();
 	}
 }

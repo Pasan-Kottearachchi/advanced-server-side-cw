@@ -26,7 +26,7 @@ class Login extends CI_Controller {
 
 		$this->load->model('Login/AuthModel');
 
-		if ($this->form_validation->run() == FALSE) {
+		if (!$this->form_validation->run()) {
 			$this->load->view('login/login_form');
 		} else {
 			$userDetails = $this->AuthModel->getUserByEmail($username);
@@ -35,8 +35,8 @@ class Login extends CI_Controller {
 					$this->session->set_userdata('user_id', $userDetails->user_id);
 					$this->session->set_userdata('username', $userDetails->username);
 					$this->session->set_userdata('logged_in', true);
-//					redirect to home with base url
 					$this->session->set_flashdata('success', 'Logged in successfully');
+
 					redirect(base_url().'/home');
 				} else {
 					$this->session->set_flashdata('error', 'Invalid password');
@@ -46,17 +46,6 @@ class Login extends CI_Controller {
 				$this->session->set_flashdata('error', 'Invalid username');
 				$this->load->view('login/login_form');
 			}
-//			if ($login) {
-//				$session_data = array(
-//					'username' => $username,
-//					'logged_in' => TRUE,
-//				);
-//				$this->session->set_userdata($session_data);
-//				redirect('welcome');
-//			} else {
-//				$this->session->set_flashdata('error', 'Invalid Username or Password');
-//				redirect('login');
-//			}
 		}
 
 	}
@@ -72,7 +61,7 @@ class Login extends CI_Controller {
 
 		$this->load->model('Login/AuthModel');
 
-		if ($this->form_validation->run() == FALSE) {
+		if (!$this->form_validation->run()) {
 			$this->load->view('login/signup_form');
 		} else {
 			$userDetails = $this->AuthModel->getUserByEmail($username);
