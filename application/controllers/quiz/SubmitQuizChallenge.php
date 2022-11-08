@@ -1,16 +1,17 @@
 <?php
 
-class SubmitQuiz extends CI_Controller {
+class SubmitQuizChallenge extends CI_Controller {
 
 	public function index() {
 		if (!$this->session->userdata('logged_in')) {
-			redirect(base_url().'/login');
+			redirect(base_url().'login');
 		}
-		$this->submitQuiz();
+		$this->SubmitQuizChallenge();
 	}
 
-	public function submitQuiz() {
+	public function SubmitQuizChallenge() {
 		$this->load->model('Quiz_Model/QuizModel');
+		$this->load->model('Quiz_Model/QuizAnswerModel');
 		$this->load->model('Quiz_Model/QuizStatModel');
 		$formValues = $this->input->post();
 		$correctAnswers = 0;
@@ -25,7 +26,7 @@ class SubmitQuiz extends CI_Controller {
 
 
 //		$quizAttemptId = $this->QuizStatModel->insert_quiz_attempt(intval($quiz_id), intval($user_id));
-		$quizAnswers = $this->QuizModel->get_quiz_answers_by_quiz_id($quiz_id);
+		$quizAnswers = $this->QuizAnswerModel->get_quiz_answers_by_quiz_id($quiz_id);
 		$quizMetaData = $this->QuizModel->get_by_id($quiz_id);
 
 		foreach ($formValues as $key => $value) {

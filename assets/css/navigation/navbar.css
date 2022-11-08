@@ -1,0 +1,18 @@
+.dropdown-menu {
+	float: right;
+}
+.user-account {
+	margin-left: auto;
+}
+
+.user-avatar {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.logo {
+	margin-left: 30px;
+	height: 30px;
+}

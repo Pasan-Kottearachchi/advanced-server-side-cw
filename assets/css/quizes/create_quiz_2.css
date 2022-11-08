@@ -1,0 +1,29 @@
+body {
+	font-family: 'Varela Round', sans-serif;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #fff;
+	margin-top: 90px;
+}
+
+/*add space between form rows */
+.form-group {
+	margin-bottom: 20px;
+}
+
+.form-row {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.ans-label {
+	margin-top: 10px;
+	margin-left: 10px;
+	font-weight: bold;
+}
+
+.btn {
+	/*	keep button to right */
+	float: right;
+	margin-right: 20px;
+}

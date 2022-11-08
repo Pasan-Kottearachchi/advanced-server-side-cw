@@ -37,7 +37,7 @@ class Login extends CI_Controller {
 					$this->session->set_userdata('logged_in', true);
 					$this->session->set_flashdata('success', 'Logged in successfully');
 
-					redirect(base_url().'/home');
+					redirect(base_url().'home');
 				} else {
 					$this->session->set_flashdata('error', 'Invalid password');
 					$this->load->view('login/login_form');

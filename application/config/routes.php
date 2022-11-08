@@ -54,12 +54,23 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['home'] = 'home/Home/index';
-$route['challenge/(:num)'] = 'home/Home/challengeQuiz/$1';
-$route['quiz/submit'] = 'quiz/SubmitQuiz/index';
-$route['quiz/search'] = 'quiz/SearchQuiz/index';
+// Authentication Routes
 $route['login'] = 'login/Login/login_redirect';
 $route['signup'] = 'login/Login/signup_redirect';
 $route['login/submit'] = 'login/Login/signin';
 $route['signup/submit'] = 'login/Login/signup';
+
+// Home Routes
+$route['home'] = 'home/Home/index';
+$route['quiz/search'] = 'quiz/SearchQuiz/index';
+
+// Challenge Quiz Routes
+$route['challenge/(:num)'] = 'quiz/ChallengeQuiz/index/$1';
+$route['quiz/challenge/submit'] = 'quiz/SubmitQuizChallenge/index';
+
+// Create Quiz Routes
+$route['quiz/new'] = 'quiz/CreateQuiz/index';
+$route['quiz/meta/submit'] = 'quiz/CreateQuiz/create_quiz_meta_data';
+$route['quiz/question/submit'] = 'quiz/CreateQuiz/create_quiz_question_and_answers';
+$route['quiz/submit'] = 'quiz/CreateQuiz/submit_quiz';
 

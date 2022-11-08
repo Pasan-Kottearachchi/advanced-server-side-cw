@@ -393,8 +393,8 @@ $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;
 $config['sess_regenerate_destroy'] = FALSE;
 //TODO PASAN: Uncomment these 2 lines
-//$config['sess_destroy_on_logout'] = TRUE;
-//$config['sess_destroy_on_browser_close'] = TRUE;
+$config['sess_destroy_on_logout'] = TRUE;
+$config['sess_destroy_on_browser_close'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

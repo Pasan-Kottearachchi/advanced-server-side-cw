@@ -8,68 +8,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<style type="text/css">
-		.navbar {
-			background-color: #253341;
-		}
-		.navbar-brand {
-			color: #fff;
-		}
-		.navbar-brand:hover {
-			color: #fff;
-		}
-		.navbar-nav li a {
-			color: #fff;
-			font-weight: 400;
-		}
-		.navbar-nav li a:hover {
-			color: #5299D3;
-		}
-		.navbar-nav li.active a {
-			color: #962b2b;
-		}
-		.navbar-nav li.active a:hover {
-			color: #fff;
-		}
-	/*	add padding to button */
-		.btn {
-			margin-left: 10px;
-			margin-right: 10px;
-		}
-	</style>
 	<title>Quiz</title>
-
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="<?php echo CSS_URL . 'assets/css/navigation/navbar.css'; ?>">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg">
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #5d7c96;">
+	<img src="<?php echo CSS_URL.'assets/img/logo.svg'; ?>" class="logo"
+		 alt="User Avatar">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
-	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-		<a class="navbar-brand" href="#">Hidden brand</a>
-		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-			<li class="nav-item">
-				<a class="nav-link" href="#">Manage Quiz's</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">User Account</a>
-			</li>
+	<div class="collapse navbar-collapse" id="navbarNavDropdown">
 		</ul>
-<!--		Conditionally Render if search and create quiz fields -->
-		<?php if ($show_search_bar) : ?>
-			<form class="form-inline my-2 my-lg-0" action="<?php echo base_url('quiz/search')?>" method="get">
-				<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Quizes" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
-		<?php endif; ?>
-		<?php if ($show_action_button) : ?>
-			<button class="btn btn-info my-2 my-sm-0" type="submit">Create Quiz</button>
-		<?php endif; ?>
-
+		<div class="user-account">
+			<ul class="navbar-nav">
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						<img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" class="user-avatar"
+							 alt="User Avatar">
+						<?php echo $this->session->userdata('username'); ?>
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="#">My Quizes</a>
+						<a class="dropdown-item" href="#">Edit Profile</a>
+						<a class="dropdown-item" href="#">Logout</a>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

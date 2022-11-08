@@ -1,0 +1,36 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #fff;
+}
+
+.container {
+	width: 800px;
+	padding: 1em;
+	border: 1px solid #253341;
+	border-radius: 1em;
+	position: absolute;
+	top: 30%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.retake-quiz-label {
+	text-decoration: None;
+	color: white;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.1;
+	margin-left: 25%;
+	width: 150px;
+}
+.home-label {
+	text-decoration: None;
+	margin-left: 10%;
+	color: white;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.1;
+	width: 150px;
+}

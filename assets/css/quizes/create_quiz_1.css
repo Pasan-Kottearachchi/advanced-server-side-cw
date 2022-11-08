@@ -1,0 +1,25 @@
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	line-height: 1.42857143;
+	color: #333;
+	background-color: #fff;
+	margin-top: 90px;
+}
+
+container {
+	width: 100%;
+}
+
+form {
+	margin: auto;
+	width: 800px;
+	padding: 1em;
+	padding-bottom: 20px;
+	margin-top: 3vh;
+}
+
+.btn {
+	/*	keep button to right */
+	float: right;
+	margin-right: 20px;
+}

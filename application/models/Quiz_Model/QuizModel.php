@@ -1,16 +1,25 @@
 <?php
 
-class QuizModel extends CI_Model {
-	function __construct() {
+class QuizModel extends CI_Model
+{
+	function __construct()
+	{
 		parent::__construct();
 		$db = $this->load->database();
 	}
 
-//	function insert_quiz_meta_data($data) {
-//		$this->db->insert('student_course', array("student_name" => $data['name'], "course" => $data['course']));
-//	}
+//	Insert quiz meta data into database and return all data
+	public function insert_quiz_metadata($quiz_name, $quiz_category, $user_id)
+	{
+		$sql = "INSERT INTO quiz (title, quiz_category_id, created_by, archived) VALUES (?, ?, ?, ?)";
+		$this->db->query($sql, array($quiz_name, intval($quiz_category), intval($user_id), 0));
+		return $this->db->insert_id();
 
-	function get_all_quizzes() {
+
+	}
+
+	function get_all_quizzes()
+	{
 		$this->db->select('quiz_id, title, created_by, user.name');
 		$this->db->from('quiz');
 		$this->db->join('user', 'user.user_id = quiz.created_by', 'left');
@@ -18,52 +27,30 @@ class QuizModel extends CI_Model {
 		return $query->result();
 	}
 
-	function get_by_id($id) {
-		$query = $this->db->get_where('quiz', array('quiz_id' => $id));
+	function get_by_id($id)
+	{
+		$sql = "SELECT *
+				FROM quiz
+				WHERE quiz_id = ? and archived = 0";
+		$query = $this->db->query($sql, array('quiz_id' => $id));
 		return $query->row();
 	}
 
-	function get_quiz_questions_by_quiz_id($id) {
-		$query = $this->db->get_where('quiz_question', array('quiz_id' => $id));
-		return $query->result();
-	}
-
-	function get_quiz_ans_by_quiz_questions_ids($ids) {
-		$sql = "SELECT quiz_answer_id, description, is_correct, quiz_question_id
-				FROM quiz_answer 
-				WHERE quiz_question_id IN ? and archived = 0;";
-		$query = $this->db->query($sql, array('quiz_question_id' => $ids));
-		return $query->result();
-	}
-
-	function validate_correct_quiz_answer($quiz_question_id, $quiz_answer_id) {
-		$sql = "SELECT quiz_answer_id, description, is_correct, quiz_question_id
-				FROM quiz_answer 
-				WHERE quiz_question_id = ? and quiz_answer_id = ? and archived = 0;";
-		$query = $this->db->query(
-			$sql,
-			array('quiz_question_id' => $quiz_question_id, 'quiz_answer_id' => $quiz_answer_id)
-		);
-		return $query->row();
-	}
-
-	function search_quiz($search) {
+	function search_quiz($search)
+	{
 		$sql = "SELECT quiz_id, title, created_by, user.name
 				FROM quiz
 				JOIN user ON user.user_id = quiz.created_by
 				WHERE title LIKE ? OR name LIKE ?;";
-		$query = $this->db->query($sql, array('%'.$search.'%', '%'.$search.'%'));
+		$query = $this->db->query($sql, array('%' . $search . '%', '%' . $search . '%'));
 		return $query->result();
 	}
 
-//	get all quiz answers for a given quiz
-	function get_quiz_answers_by_quiz_id($id) {
-		$sql = "SELECT quiz_answer_id, description, is_correct, quiz_question_id
-				FROM quiz_answer 
-				WHERE quiz_question_id IN (
-					SELECT quiz_question_id FROM quiz_question WHERE quiz_id = ?
-				) and archived = 0;";
-		$query = $this->db->query($sql, array('quiz_id' => $id));
-		return $query->result();
+	function update_quiz_status($id, $status)
+	{
+		$sql = "UPDATE quiz SET archived = ? WHERE quiz_id = ?;";
+		$query = $this->db->query($sql, array($status, $id));
+		return $query;
 	}
+
 }

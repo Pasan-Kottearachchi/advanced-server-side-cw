@@ -1,0 +1,126 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+/*  Helper Styles */
+.body {
+	/*background: #587792;*/
+	margin-top: 0px;
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.link {
+	text-decoration: none;
+	font-family: FontAwesome, "Roboto", sans-serif;
+	text-align: center;
+	font-weight: bold;
+	letter-spacing: 1px;
+	/*font-style: normal;*/
+}
+
+.container {
+	margin-top: 10%;
+	margin-left: 20vw;
+}
+
+/* Card Styles */
+
+.card-image img {
+	max-height: 100%;
+	max-width: 100%;
+	border-radius: 8px 8px 0px 0;
+}
+
+.table-header {
+	/*	Get the table header to max width of the screen*/
+	width: 100%;
+	padding-top: 15px;
+	padding-bottom: 50px;
+	margin-top: 70px;
+}
+
+/* get the search-form and the add-form on the same line to the right side of the screen */
+
+.add-form {
+	float: right;
+	margin-right: 10px;
+}
+
+.search-form {
+	float: right;
+	margin-right: 10px;
+	margin-left: 5px;
+}
+
+.search-form .form-control {
+	margin-right: 10px;
+}
+
+.screen-name {
+	float: left;
+	margin-left: 30px;
+}
+.screen-name .heading {
+	font-weight: 700;
+}
+
+.table-div {
+	width: 90vw;
+/*	take to center of screens width */
+	margin-left: 5vw;
+/*	Outline boostrap table */
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	overflow: auto;
+	max-height: 75vh;
+}
+
+::-webkit-scrollbar {
+	background-color: hsl(235, 24%, 19%);
+	width: 8px;
+	border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: hsl(240, 9%, 68%);
+	/*box-shadow: 0 0 3px hsl(235, 21%, 11%);*/
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background-color: #5d7c96;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: hsl(240, 9%, 68%);
+}
+
+
+@-webkit-keyframes pulse {
+	0% {
+		-moz-transform: scale(0.9);
+		-ms-transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+		transform: scale(0.9);
+	}
+
+	70% {
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		box-shadow: 0 0 0 50px rgba(90, 153, 212, 0);
+	}
+
+	100% {
+		-moz-transform: scale(0.9);
+		-ms-transform: scale(0.9);
+		-webkit-transform: scale(0.9);
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
+	}
+}
