@@ -1,0 +1,53 @@
+.body {
+	/*background: #587792;*/
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.table-header {
+	/*	Get the table header to max width of the screen*/
+	width: 100%;
+	margin-top: 7%;
+	padding-bottom: 10px;;
+}
+
+/*.add-form {*/
+/*	margin-left: 90%;*/
+/*}*/
+
+.btn-add-quiz{
+	margin-left: 82%;
+	width: 180px;
+}
+
+.table-div {
+	padding-right: 10px;
+	border-radius: 8px;
+	overflow: auto;
+	max-height: 80vh;
+}
+
+::-webkit-scrollbar {
+	background-color: hsl(235, 24%, 19%);
+	width: 8px;
+	border-radius: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: hsl(240, 9%, 68%);
+	/*box-shadow: 0 0 3px hsl(235, 21%, 11%);*/
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background-color: #5d7c96;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: hsl(240, 9%, 68%);
+}

@@ -53,4 +53,21 @@ class QuizModel extends CI_Model
 		return $query;
 	}
 
+	function get_quizes_by_user_id($user_id)
+	{
+		$sql = "SELECT 
+					quiz.quiz_id, 
+					title, 
+					quiz_category.category_name, 
+					user.name,
+					COUNT(quiz_attempt.quiz_attempt_id) as attempts
+				FROM quiz
+				LEFT JOIN quiz_category ON quiz.quiz_category_id = quiz_category.quiz_category_id
+				LEFT JOIN quiz_attempt ON quiz_attempt.quiz_id = quiz.quiz_id
+				LEFT JOIN user ON user.user_id = quiz.created_by
+				WHERE created_by = ? and quiz.archived = 0
+				GROUP BY quiz.quiz_id;";
+		$query = $this->db->query($sql, array($user_id));
+		return $query->result();
+	}
 }

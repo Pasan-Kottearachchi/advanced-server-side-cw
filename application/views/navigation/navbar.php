@@ -13,8 +13,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #5d7c96;">
-	<img src="<?php echo CSS_URL.'assets/img/logo.svg'; ?>" class="logo"
-		 alt="User Avatar">
+	<a href="<?php echo base_url('home') ?>"> <img src="<?php echo CSS_URL.'assets/img/logo.svg'; ?>" class="logo"
+		 alt="User Avatar"> </a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
 			aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<?php echo $this->session->userdata('username'); ?>
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">My Quizes</a>
+						<a class="dropdown-item" href="<?php echo base_url('quiz/manage') ?>">My Quizes</a>
 						<a class="dropdown-item" href="#">Edit Profile</a>
 						<a class="dropdown-item" href="#">Logout</a>
 					</div>

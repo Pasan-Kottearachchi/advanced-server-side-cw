@@ -13,6 +13,7 @@ class SubmitQuizChallenge extends CI_Controller {
 		$this->load->model('Quiz_Model/QuizModel');
 		$this->load->model('Quiz_Model/QuizAnswerModel');
 		$this->load->model('Quiz_Model/QuizStatModel');
+		$this->load->model('Quiz_Model/QuizAttemptModel');
 		$formValues = $this->input->post();
 		$correctAnswers = 0;
 //		access quiz_id key in form values
@@ -25,7 +26,7 @@ class SubmitQuizChallenge extends CI_Controller {
 		$totalAnswers = count($formValues);
 
 
-//		$quizAttemptId = $this->QuizStatModel->insert_quiz_attempt(intval($quiz_id), intval($user_id));
+		$quizAttemptId = $this->QuizAttemptModel->insert_quiz_attempt(intval($quiz_id), intval($user_id));
 		$quizAnswers = $this->QuizAnswerModel->get_quiz_answers_by_quiz_id($quiz_id);
 		$quizMetaData = $this->QuizModel->get_by_id($quiz_id);
 

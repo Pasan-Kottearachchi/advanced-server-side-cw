@@ -66,13 +66,10 @@
 
 .table-div {
 	width: 90vw;
-/*	take to center of screens width */
 	margin-left: 5vw;
-/*	Outline boostrap table */
-	border: 1px solid #ddd;
-	border-radius: 8px;
 	overflow: auto;
 	max-height: 75vh;
+	padding-right: 10px;
 }
 
 ::-webkit-scrollbar {

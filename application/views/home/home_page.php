@@ -13,6 +13,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
 		  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+	<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 </head>
 <body class="body">
 <div>
@@ -25,33 +27,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div class="screen-name">
 			<h5 class="heading">All Quizes</h5>
 		</div>
-		<!--		-->
-		<div class="add-form">
-			<a href="<?= base_url('quiz/new'); ?>" class="btn btn-info my-2 my-sm-0">Add Quiz</a>
-		</div>
-		<div class="search-form">
-			<form action="<?= base_url('quiz/search'); ?>" method="get">
-				<div class="input-group">
-					<input type="text" class="form-control" name="search" placeholder="Search Quizes">
-					<span class="input-group-btn">
-						<button class="btn btn-secondary" type="submit">Go!</button>
-					</span>
-				</div>
-			</form>
-		</div>
-		<!--		Add search and add-quiz buttons here-->
-		<!--		<form class="add-form form-inline my-2 my-lg-0" action="-->
-		<?php //echo base_url('quiz/new')?><!--">-->
-		<!--			<button class="btn btn-info my-2 my-sm-0" type="submit">Create Quiz</button>-->
-		<!--		</form>-->
-		<!--		<form class="search-form form-inline my-2 my-lg-0" action="-->
-		<?php //echo base_url('quiz/search')?><!--" method="get">-->
-		<!--			<input class="form-control mr-sm-2" type="search" name="search" placeholder="Search Quizes" aria-label="Search">-->
-		<!--			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-		<!--		</form>-->
 	</div>
 	<div class="table-div">
-		<table class="table table-sm table-striped">
+		<table id="all-quizes-table" class="table table-sm table-striped">
 			<thead>
 			<tr>
 				<th scope="col">Quiz id</th>
@@ -91,5 +69,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		}, 2000);
 	}
 </script>
-
+<script>
+	$(document).ready(function () {
+		$('#all-quizes-table').DataTable();
+	});
+</script>
 </html>

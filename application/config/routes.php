@@ -74,3 +74,7 @@ $route['quiz/meta/submit'] = 'quiz/CreateQuiz/create_quiz_meta_data';
 $route['quiz/question/submit'] = 'quiz/CreateQuiz/create_quiz_question_and_answers';
 $route['quiz/submit'] = 'quiz/CreateQuiz/submit_quiz';
 
+// Add manage quiz route
+$route['quiz/manage'] = 'quiz/ManageQuiz/index';
+$route['quiz/delete/(:num)'] = 'quiz/ManageQuiz/delete_quiz/$1';
+

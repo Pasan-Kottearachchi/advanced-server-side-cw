@@ -6,11 +6,6 @@ class QuizStatModel extends CI_Model {
 		$db = $this->load->database();
 	}
 
-	function insert_quiz_attempt($quiz_id, $user_id) {
-		$this->db->insert('quiz_attempt', array("quiz_id" => $quiz_id, "attempted_by" => $user_id));
-		return $this->db->insert_id();
-	}
-
 	function insert_attempt_question($data) {
 		$this->db->insert('attempt_question', $data);
 	}
