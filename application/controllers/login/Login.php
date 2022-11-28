@@ -30,10 +30,12 @@ class Login extends CI_Controller {
 			$this->load->view('login/login_form');
 		} else {
 			$userDetails = $this->AuthModel->getUserByEmail($username);
+			echo json_encode($userDetails);
 			if ($userDetails != null) {
-				if (password_verify($password, $userDetails->password)) {
+				$authenticated = $this->AuthModel->authenticateUser($username, $password);
+				if ($authenticated) {
 					$this->session->set_userdata('user_id', $userDetails->user_id);
-					$this->session->set_userdata('username', $userDetails->username);
+					$this->session->set_userdata('name', $userDetails->name);
 					$this->session->set_userdata('logged_in', true);
 					$this->session->set_flashdata('success', 'Logged in successfully');
 
@@ -77,7 +79,8 @@ class Login extends CI_Controller {
 	}
 
 	public function logout() {
-
+		$this->session->sess_destroy();
+		redirect(base_url().'login');
 	}
 
 }

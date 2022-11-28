@@ -8,7 +8,7 @@ class AuthModel extends CI_Model {
 	}
 
 	public function getUserByEmail($email) {
-		$sql = "SELECT user_id, username, password
+		$sql = "SELECT user_id, username, password, name
 				FROM user 
 				WHERE username = ? and archived = 0;";
 		$query = $this->db->query($sql, array('email' => $email));
@@ -21,6 +21,20 @@ class AuthModel extends CI_Model {
 			'user',
 			array("username" => $data['email'], "password" => $hashed_password, "name" => $data['name'])
 		);
+	}
+
+	public function authenticateUser($username, $password) {
+		$userDetails = $this->getUserByEmail($username);
+		if ($userDetails != null) {
+			if (password_verify($password, $userDetails->password)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+
 	}
 
 }

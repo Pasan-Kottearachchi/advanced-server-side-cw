@@ -57,6 +57,7 @@ $route['translate_uri_dashes'] = FALSE;
 // Authentication Routes
 $route['login'] = 'login/Login/login_redirect';
 $route['signup'] = 'login/Login/signup_redirect';
+$route['logout'] = 'login/Login/logout';
 $route['login/submit'] = 'login/Login/signin';
 $route['signup/submit'] = 'login/Login/signup';
 

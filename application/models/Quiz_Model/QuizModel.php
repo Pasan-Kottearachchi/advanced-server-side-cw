@@ -60,12 +60,15 @@ class QuizModel extends CI_Model
 					title, 
 					quiz_category.category_name, 
 					user.name,
-					COUNT(quiz_attempt.quiz_attempt_id) as attempts
+					COUNT(quiz_attempt.quiz_attempt_id) as attempts,
+					quiz_stats.correct_answers,
+					quiz_stats.total_answers
 				FROM quiz
 				LEFT JOIN quiz_category ON quiz.quiz_category_id = quiz_category.quiz_category_id
 				LEFT JOIN quiz_attempt ON quiz_attempt.quiz_id = quiz.quiz_id
 				LEFT JOIN user ON user.user_id = quiz.created_by
-				WHERE created_by = ? and quiz.archived = 0
+				LEFT JOIN quiz_stats ON quiz_stats.quiz_id = quiz.quiz_id
+				WHERE quiz.created_by = ? and quiz.archived = 0
 				GROUP BY quiz.quiz_id;";
 		$query = $this->db->query($sql, array($user_id));
 		return $query->result();

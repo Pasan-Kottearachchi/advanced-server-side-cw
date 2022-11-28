@@ -24,15 +24,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<div class="user-account">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+					<a class="nav-link dropdown-toggle navbar-user-name" href="#" id="navbardrop" data-toggle="dropdown">
 						<img src="https://www.w3schools.com/bootstrap4/img_avatar1.png" class="user-avatar"
 							 alt="User Avatar">
-						<?php echo $this->session->userdata('username'); ?>
+						<?php echo $this->session->userdata('name'); ?>
 					</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="<?php echo base_url('quiz/manage') ?>">My Quizes</a>
 						<a class="dropdown-item" href="#">Edit Profile</a>
-						<a class="dropdown-item" href="#">Logout</a>
+						<a class="dropdown-item" href="<?php echo base_url('logout') ?>">Logout</a>
 					</div>
 				</li>
 			</ul>

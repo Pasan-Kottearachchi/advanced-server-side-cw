@@ -43,13 +43,14 @@ class SubmitQuizChallenge extends CI_Controller {
 					}
 				}
 			}
-//			$this->QuizStatModel->insert_attempt_question(array(
-//				"quiz_attempt_id" => $quizAttemptId,
-//				"quiz_question_id" => intval($key),
-//				"quiz_answer_id" => intval($value)
-//			));
+			$this->QuizStatModel->insert_attempt_question(array(
+				"quiz_attempt_id" => $quizAttemptId,
+				"quiz_question_id" => intval($key),
+				"quiz_answer_id" => intval($value)
+			));
 
 		}
+		$this->addQuizStats($quiz_id);
 
 		$response = array();
 		$response['correct_answers'] = $correctAnswers;
@@ -58,6 +59,18 @@ class SubmitQuizChallenge extends CI_Controller {
 
 		$this->load->view('quizes/quiz_result', array("response"=>$response));
 
+	}
+
+	function addQuizStats($quiz_id) {
+		$this->load->model('Quiz_Model/QuizStatModel');
+		$records = $this->QuizStatModel->get_quiz_correctly_answered_percentage($quiz_id);
+		$correctlyAnswered = 0;
+		$totalQuestions = 0;
+		foreach ($records as $record) {
+			$correctlyAnswered = $correctlyAnswered + intval($record->correctly_answered) ;
+			$totalQuestions = $totalQuestions + intval($record->total_questions);
+		}
+		$this->QuizStatModel->insert_quiz_stats($quiz_id, $correctlyAnswered, $totalQuestions);
 	}
 
 }

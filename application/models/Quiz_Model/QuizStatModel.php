@@ -29,13 +29,46 @@ class QuizStatModel extends CI_Model {
 
 //	Get correctly answered percentage for a given quiz
 	function get_quiz_correctly_answered_percentage($quiz_id) {
-		$sql = "SELECT quiz_id, quiz_attempt_id, user_id, quiz_attempt.created_at, quiz_attempt.updated_at, 
-				(SELECT COUNT(*) FROM attempt_question WHERE quiz_attempt_id = quiz_attempt.quiz_attempt_id) AS total_questions,
-				(SELECT COUNT(*) FROM attempt_question WHERE quiz_attempt_id = quiz_attempt.quiz_attempt_id AND is_correct = 1) AS correctly_answered
-				FROM quiz_attempt
+		$sql = "SELECT 
+				  quiz_attempt.quiz_id, 
+				  quiz_attempt.quiz_attempt_id, 
+				  quiz_attempt.attempted_by, 
+				  quiz_attempt.completed_time, 
+				  (
+					SELECT 
+					  Count(*) 
+					FROM 
+					  attempt_question 
+					WHERE 
+					  quiz_attempt_id = quiz_attempt.quiz_attempt_id
+				  ) AS total_questions, 
+				  (
+					SELECT 
+					  Count(*) 
+					FROM 
+					  attempt_question 
+					  LEFT JOIN quiz_answer ON attempt_question.quiz_answer_id = quiz_answer.quiz_answer_id 
+					  AND quiz_answer.is_correct = 1 
+					WHERE 
+					  quiz_attempt_id = quiz_attempt.quiz_attempt_id 
+					  AND quiz_answer.is_correct = 1
+				  ) AS correctly_answered 
+				FROM quiz_attempt 
 				WHERE quiz_id = ?;";
 		$query = $this->db->query($sql, array('quiz_id' => $quiz_id));
 		return $query->result();
+	}
+
+	// Insert or update on conflict with quiz id quiz stats to database
+	function insert_quiz_stats($quiz_id, $correct_ans_count, $total_ans_count){
+		$sql = "INSERT INTO quiz_stats 
+    			(quiz_id, correct_answers, total_answers) 
+				VALUES (?, ?, ?) 
+				ON DUPLICATE KEY UPDATE correct_answers = ?, total_answers = ?;";
+		$this->db->query(
+			$sql,
+			array($quiz_id, $correct_ans_count, $total_ans_count, $correct_ans_count, $total_ans_count)
+		);
 	}
 
 }
