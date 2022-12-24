@@ -70,7 +70,31 @@ class QuizModel extends CI_Model
 				LEFT JOIN quiz_stats ON quiz_stats.quiz_id = quiz.quiz_id
 				WHERE quiz.created_by = ? and quiz.archived = 0
 				GROUP BY quiz.quiz_id;";
-		$query = $this->db->query($sql, array($user_id));
+		$query = $this->db->query($sql, array('created_by'=>$user_id));
 		return $query->result();
+	}
+
+	function getUserCreatedQuizCount($userId){
+		$sql = "SELECT COUNT(quiz_id) as count
+			FROM quiz
+				WHERE created_by = ? and archived = 0;";
+		$query = $this->db->query($sql, array('created_by'=>$userId));
+		return $query->row();
+	}
+
+	function getUserParticipatedTotalQuizCount($userId){
+		$sql = "SELECT COUNT(DISTINCT quiz_id) as count
+				FROM quiz_attempt
+				WHERE attempted_by = ? and archived = 0;";
+		$query = $this->db->query($sql, array('attempted_by'=>$userId));
+		return $query->row();
+	}
+
+	function getUserAttemptedQuizCount($userId){
+		$sql = "SELECT COUNT(quiz_id) as count
+				FROM quiz_attempt
+				WHERE attempted_by = ? and archived = 0;";
+		$query = $this->db->query($sql, array('attempted_by'=>$userId));
+		return $query->row();
 	}
 }

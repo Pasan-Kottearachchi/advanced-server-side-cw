@@ -31,7 +31,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</a>
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="<?php echo base_url('quiz/manage') ?>">My Quizes</a>
-						<a class="dropdown-item" href="#">Edit Profile</a>
+						<a class="dropdown-item" href="<?php echo base_url('profile/'.$this->session->userdata('user_id')) ?>">Edit Profile</a>
 						<a class="dropdown-item" href="<?php echo base_url('logout') ?>">Logout</a>
 					</div>
 				</li>

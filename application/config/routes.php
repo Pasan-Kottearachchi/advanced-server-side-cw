@@ -68,6 +68,7 @@ $route['quiz/search'] = 'quiz/SearchQuiz/index';
 // Challenge Quiz Routes
 $route['challenge/(:num)'] = 'quiz/ChallengeQuiz/index/$1';
 $route['quiz/challenge/submit'] = 'quiz/SubmitQuizChallenge/index';
+$route['quiz/results/(:num)/(:num)'] = 'quiz/QuizResult/index/$1/$2';
 
 // Create Quiz Routes
 $route['quiz/new'] = 'quiz/CreateQuiz/index';
@@ -78,4 +79,8 @@ $route['quiz/submit'] = 'quiz/CreateQuiz/submit_quiz';
 // Add manage quiz route
 $route['quiz/manage'] = 'quiz/ManageQuiz/index';
 $route['quiz/delete/(:num)'] = 'quiz/ManageQuiz/delete_quiz/$1';
+
+// Profile Routes
+$route['profile/(:num)'] = 'user/UserDetails/index/$1';
+$route['profile/edit/(:num)'] = 'user/UserDetails/update/$1';
 

@@ -43,4 +43,25 @@ class QuizAnswerModel extends CI_Model {
 		return $query->result();
 	}
 
+	function get_quiz_results_by_quiz_attempt_id($id){
+		$sql = "SELECT
+					*
+				FROM
+					quiz_answer
+				WHERE
+					quiz_answer_id IN(
+					SELECT
+						quiz_answer_id
+					FROM
+						attempt_question
+					WHERE
+						quiz_attempt_id = ?
+				)";
+
+		$query = $this->db->query($sql, array('quiz_attempt_id' => $id));
+		return $query->result();
+
+	}
+
+
 }

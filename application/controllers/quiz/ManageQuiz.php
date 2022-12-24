@@ -16,9 +16,11 @@ class ManageQuiz extends CI_Controller
 		$quizes = $this->QuizModel->get_quizes_by_user_id($user_id);
 		$data = array();
 		foreach ($quizes as $quiz) {
-//			get the correct answer percentage by dividing the correct answers by the total number of questions
-			$correct_answer_percentage = $quiz->correct_answers / $quiz->total_answers;
-			$correct_answer_percentage = $correct_answer_percentage * 100;
+			if ($quiz->total_answers != 0) {
+				$correct_answer_percentage = $quiz->correct_answers / $quiz->total_answers * 100;
+			} else {
+				$correct_answer_percentage = 0;
+			}
 			$correct_answer_percentage = round($correct_answer_percentage, 2);
 			$quiz->correct_answer_percentage = $correct_answer_percentage;
 			$data[] = $quiz;

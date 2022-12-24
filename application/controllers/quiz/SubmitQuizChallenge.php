@@ -14,8 +14,8 @@ class SubmitQuizChallenge extends CI_Controller {
 		$this->load->model('Quiz_Model/QuizAnswerModel');
 		$this->load->model('Quiz_Model/QuizStatModel');
 		$this->load->model('Quiz_Model/QuizAttemptModel');
-		$formValues = $this->input->post();
-		$correctAnswers = 0;
+		$formValues = $this->input->post('quizData');
+
 //		access quiz_id key in form values
 		$quiz_id = $formValues['quiz-id'];
 		$user_id = $this->session->userdata('user_id');;
@@ -23,42 +23,33 @@ class SubmitQuizChallenge extends CI_Controller {
 //		removing quiz_id from the array
 		unset($formValues['quiz-id']);
 
-		$totalAnswers = count($formValues);
-
 
 		$quizAttemptId = $this->QuizAttemptModel->insert_quiz_attempt(intval($quiz_id), intval($user_id));
 		$quizAnswers = $this->QuizAnswerModel->get_quiz_answers_by_quiz_id($quiz_id);
-		$quizMetaData = $this->QuizModel->get_by_id($quiz_id);
 
 		foreach ($formValues as $key => $value) {
 			$submittedQuestionId = intval($key);
 			$submittedAnswerId = intval($value);
-//			Check if answer is correct
-			foreach ($quizAnswers as $quizAnswer) {
-				if (intval($quizAnswer->quiz_question_id) === intval($submittedQuestionId) &&
-					intval($quizAnswer->quiz_answer_id) === intval($submittedAnswerId)
-				) {
-					if (intval($quizAnswer->is_correct) === 1) {
-						$correctAnswers++;
-					}
-				}
-			}
+
 			$this->QuizStatModel->insert_attempt_question(array(
 				"quiz_attempt_id" => $quizAttemptId,
-				"quiz_question_id" => intval($key),
-				"quiz_answer_id" => intval($value)
+				"quiz_question_id" => $submittedQuestionId,
+				"quiz_answer_id" => $submittedAnswerId
 			));
 
 		}
 		$this->addQuizStats($quiz_id);
 
 		$response = array();
-		$response['correct_answers'] = $correctAnswers;
-		$response['total_questions'] = $totalAnswers;
-		$response['quiz_meta_data'] = $quizMetaData;
+		$response['quiz_id'] = $quiz_id;
+		$response['quiz_attempt_id'] = $quizAttemptId;
 
-		$this->load->view('quizes/quiz_result', array("response"=>$response));
+		$successResponse = array(
+			"status" => "success",
+			"data" => $response
+		);
 
+		return $this->output->set_content_type('application/json')->set_output(json_encode($successResponse));
 	}
 
 	function addQuizStats($quiz_id) {

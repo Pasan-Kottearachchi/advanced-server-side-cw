@@ -78,7 +78,9 @@ class CreateQuiz extends CI_Controller
 		$this->load->model('Quiz_Model/QuizModel');
 
 		$quiz_question_count = $this->QuizQuestionModel->get_quiz_question_count_by_quiz_id($quiz_id);
+		$is_error = false;
 		if (intval($quiz_question_count->count) < 3) {
+			$is_error = true;
 			$this->session->set_flashdata('error', 'Quiz must have at least 3 questions');
 			$this->load->view('navigation/navbar');
 			$this->load->view('quizes/create_quiz_2', array('quiz_name' => $quiz_name, 'quiz_id' => $quiz_id));
@@ -89,8 +91,10 @@ class CreateQuiz extends CI_Controller
 			$this->QuizModel->update_quiz_status($quiz_id, 0);
 //		load navbar
 		}
-		$this->load->view('navigation/navbar');
-		$this->load->view('quizes/quiz_submitted', array('title' => $quiz_name));;
+		if (!$is_error) {
+			$this->load->view('navigation/navbar');
+			$this->load->view('quizes/quiz_submitted', array('title' => $quiz_name));
+		}
 	}
 
 }
