@@ -27,6 +27,7 @@ class Login extends CI_Controller {
 		$this->load->model('Login/AuthModel');
 
 		if (!$this->form_validation->run()) {
+			$this->session->set_flashdata('error', 'Please enter valid email and password');
 			$this->load->view('login/login_form');
 		} else {
 			$userDetails = $this->AuthModel->getUserByEmail($username);
@@ -64,6 +65,7 @@ class Login extends CI_Controller {
 		$this->load->model('Login/AuthModel');
 
 		if (!$this->form_validation->run()) {
+			$this->session->set_flashdata('error', 'Please enter valid email and password');
 			$this->load->view('login/signup_form');
 		} else {
 			$userDetails = $this->AuthModel->getUserByEmail($username);

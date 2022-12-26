@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // TODO PASAN: Change this to your own URL
-$config['base_url'] = 'http://localhost/quiz-app/';
+$config['base_url'] = 'http://localhost/quiz-app/index.php/';
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ $config['base_url'] = 'http://localhost/quiz-app/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
