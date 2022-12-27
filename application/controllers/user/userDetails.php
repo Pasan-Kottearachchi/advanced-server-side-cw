@@ -1,6 +1,6 @@
 <?php
 
-class userDetails extends CI_Controller {
+class UserDetails extends CI_Controller {
 	public function index($id) {
 		if (!$this->session->userdata('logged_in')) {
 			redirect(base_url('login'));
