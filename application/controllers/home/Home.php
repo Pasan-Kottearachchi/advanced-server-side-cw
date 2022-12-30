@@ -8,7 +8,8 @@ class Home extends CI_Controller {
 			redirect(base_url('login'));
 		}
 		$this->load->model('Quiz_Model/QuizModel');
-		$data['details'] = $this->QuizModel->get_all_quizzes();
+		$user_id = $this->session->userdata('user_id');
+		$data['details'] = $this->QuizModel->get_all_quizzes($user_id);
 		$this->load->view('navigation/navbar');
 		$this->load->view('home/home_page', $data);
 	}

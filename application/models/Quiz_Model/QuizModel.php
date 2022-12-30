@@ -18,12 +18,18 @@ class QuizModel extends CI_Model
 
 	}
 
-	function get_all_quizzes()
+	function get_all_quizzes($current_user_id)
 	{
-		$this->db->select('quiz_id, title, created_by, user.name');
-		$this->db->from('quiz');
-		$this->db->join('user', 'user.user_id = quiz.created_by', 'left');
-		$query = $this->db->get();
+		$sql = "SELECT 
+					quiz_id, 
+					title,
+					created_by, 
+					user.name 
+				FROM `quiz` 
+				left join user 
+				on user.user_id = quiz.created_by 
+				WHERE quiz.created_by != ?";
+		$query = $this->db->query($sql, array($current_user_id));
 		return $query->result();
 	}
 
