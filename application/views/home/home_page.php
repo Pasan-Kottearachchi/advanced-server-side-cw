@@ -45,7 +45,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<td><?= $row->title ?></td>
 					<td><?= $row->name ?></td>
 					<td>
-						<a href="<?php echo base_url('challenge/' . $row->quiz_id) ?>" class=" link btn btn-success">Challenge</a>
+						<a href="<?php echo base_url('challenge/' . $row->quiz_id) ?>" class=" link btn btn-sm btn-success">Challenge</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

@@ -103,7 +103,7 @@ class CreateQuiz extends CI_Controller
 
 		$quiz_question_count = $this->QuizQuestionModel->get_quiz_question_count_by_quiz_id($quiz_id);
 		$is_error = false;
-		if (intval($quiz_question_count->count) < 3) {
+		if (intval($quiz_question_count->count) < 1) {
 			$is_error = true;
 			$this->session->set_flashdata('error', 'Quiz must have at least 3 questions');
 			$this->load->view('navigation/navbar');
