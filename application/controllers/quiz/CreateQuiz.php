@@ -46,7 +46,14 @@ class CreateQuiz extends CI_Controller
 		$answer_4 = $this->input->post('answer_4');
 		$correct_answer = $this->input->post('correct_answer');
 
-//		Load model
+		$this->save_quiz_questions_and_answers($question, $answer_1, $answer_2, $answer_3, $answer_4, $correct_answer, $quiz_id);
+
+		$this->load->view('navigation/navbar');
+		$this->load->view('quizes/create_quiz_2', array('quiz_name' => $quiz_name, 'quiz_id' => $quiz_id));
+	}
+
+	function save_quiz_questions_and_answers($question, $answer_1, $answer_2, $answer_3, $answer_4, $correct_answer, $quiz_id){
+		//		Load model
 		$this->load->model('Quiz_Model/QuizQuestionModel');
 		$last_question_order = $this->QuizQuestionModel->get_quiz_question_order_by_quiz_id($quiz_id);
 //		If there are no questions in the quiz, set the question order to 1
@@ -65,10 +72,6 @@ class CreateQuiz extends CI_Controller
 		$this->QuizQuestionModel->insert_quiz_question_answer($quiz_question_id, $answer_2, $correct_answer == 2);
 		$this->QuizQuestionModel->insert_quiz_question_answer($quiz_question_id, $answer_3, $correct_answer == 3);
 		$this->QuizQuestionModel->insert_quiz_question_answer($quiz_question_id, $answer_4, $correct_answer == 4);
-
-
-		$this->load->view('navigation/navbar');
-		$this->load->view('quizes/create_quiz_2', array('quiz_name' => $quiz_name, 'quiz_id' => $quiz_id));
 	}
 
 	public function submit_quiz(){
@@ -77,9 +80,30 @@ class CreateQuiz extends CI_Controller
 		$this->load->model('Quiz_Model/QuizQuestionModel');
 		$this->load->model('Quiz_Model/QuizModel');
 
+		$question = $this->input->post('question');
+		$answer_1 = $this->input->post('answer_1');
+		$answer_2 = $this->input->post('answer_2');
+		$answer_3 = $this->input->post('answer_3');
+		$answer_4 = $this->input->post('answer_4');
+		$correct_answer = $this->input->post('correct_answer');
+
+
+//		==============  When submit button is clicked, if there is a question entered, that is saved  ==============
+		if (
+			!empty($question) && !empty($answer_1) && !empty($answer_2) &&
+			!empty($answer_3) && !empty($answer_4) && !empty($correct_answer)
+		) {
+			$this->save_quiz_questions_and_answers(
+				$question, $answer_1, $answer_2, $answer_3,
+				$answer_4, $correct_answer, $quiz_id
+			);
+		}
+// =================================================================================================================
+
+
 		$quiz_question_count = $this->QuizQuestionModel->get_quiz_question_count_by_quiz_id($quiz_id);
 		$is_error = false;
-		if (intval($quiz_question_count->count) < 3) {
+		if (intval($quiz_question_count->count) < 1) {
 			$is_error = true;
 			$this->session->set_flashdata('error', 'Quiz must have at least 3 questions');
 			$this->load->view('navigation/navbar');
