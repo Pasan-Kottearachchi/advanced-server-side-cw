@@ -10,29 +10,21 @@ class CreateQuiz extends CI_Controller
 		$this->createQuiz();
 	}
 
-	public function createQuiz(){
+	public function redirect_to_create_quiz_questions_page($quiz_id){
 		$this->load->model('Quiz_Model/QuizModel');
-		$this->load->model('Quiz_Model/QuizCategoryModel');
-
-		$quiz_categories = $this->QuizCategoryModel->get_quiz_categories();
-		$this->load->view('navigation/navbar');
-		$this->load->view('quizes/create_quiz_1', array('quiz_categories' => $quiz_categories));
-	}
-
-	public function create_quiz_meta_data(){
-		$this->load->model('Quiz_Model/QuizModel');
-		$user_id = $this->session->userdata('user_id');
-
-		$quiz_name = $this->input->post('quiz_title');
-		$quiz_category = $this->input->post('quiz_category');
-
-		$quiz_id = $this->QuizModel->insert_quiz_metadata($quiz_name, $quiz_category, $user_id);
 		$quiz_data = $this->QuizModel->get_by_id($quiz_id);
 
 		$this->load->view('navigation/navbar');
 		$this->load->view('quizes/create_quiz_2', array('quiz_name' => $quiz_data->title, 'quiz_id' => $quiz_data->quiz_id));
+	}
 
+	public function load_create_quiz_questions($id){
+		$this->load->model('Quiz_Model/QuizModel');
 
+		$quiz_data = $this->QuizModel->get_by_id($id);
+
+		$this->load->view('navigation/navbar');
+		$this->load->view('quizes/create_quiz_2', array('quiz_name' => $quiz_data->title, 'quiz_id' => $quiz_data->quiz_id));
 	}
 
 	public function create_quiz_question_and_answers(){
@@ -72,6 +64,10 @@ class CreateQuiz extends CI_Controller
 		$this->QuizQuestionModel->insert_quiz_question_answer($quiz_question_id, $answer_2, $correct_answer == 2);
 		$this->QuizQuestionModel->insert_quiz_question_answer($quiz_question_id, $answer_3, $correct_answer == 3);
 		$this->QuizQuestionModel->insert_quiz_question_answer($quiz_question_id, $answer_4, $correct_answer == 4);
+
+		redirect(base_url('quiz/new/'.$quiz_id));
+//		$this->load->view('navigation/navbar');
+//		$this->load->view('quizes/create_quiz_2', array('quiz_name' => $quiz_name, 'quiz_id' => $quiz_id));
 	}
 
 	public function submit_quiz(){
