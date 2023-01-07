@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -71,10 +71,12 @@ $route['quiz/challenge/submit'] = 'quiz/SubmitQuizChallenge/index';
 $route['quiz/results/(:num)/(:num)'] = 'quiz/QuizResult/index/$1/$2';
 
 // Create Quiz Routes
-$route['quiz/new'] = 'quiz/CreateQuiz/index';
-$route['quiz/meta/submit'] = 'quiz/CreateQuiz/create_quiz_meta_data';
 $route['quiz/question/submit'] = 'quiz/CreateQuiz/create_quiz_question_and_answers';
 $route['quiz/submit'] = 'quiz/CreateQuiz/submit_quiz';
+
+$route['quiz/new'] = 'quiz/QuizMetaData/index_get';
+$route['quiz/meta/submit'] = 'quiz/QuizMetaData/index_post';
+$route['quiz/new/(:num)'] = 'quiz/CreateQuiz/redirect_to_create_quiz_questions_page/$1';
 
 // Add manage quiz route
 $route['quiz/manage'] = 'quiz/ManageQuiz/index';
@@ -83,4 +85,3 @@ $route['quiz/delete/(:num)'] = 'quiz/ManageQuiz/delete_quiz/$1';
 // Profile Routes
 $route['profile/(:num)'] = 'user/UserDetails/index/$1';
 $route['profile/edit/(:num)'] = 'user/UserDetails/update/$1';
-

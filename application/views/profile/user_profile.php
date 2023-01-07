@@ -84,6 +84,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 <body>
 <container>
 	<div class="main-div" style="margin-top: 120px">
+		<?php if ($this->session->flashdata('error')) : ?>
+			<div class="alert alert-danger alert-dismissible fade show js-alert" role="alert">
+				<?= $this->session->flashdata('error'); ?>
+			</div>
+		<?php endif; ?>
+		<?php if ($this->session->flashdata('success')) : ?>
+			<div class="alert alert-success alert-dismissible fade show js-alert" role="alert">
+				<?= $this->session->flashdata('success'); ?>
+			</div>
+		<?php endif; ?>
 		<div class="row main-wrapper">
 			<div class="col-md-3 side-bar-user-details-container">
 				<div class="card detail-card">
@@ -204,9 +214,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			},
 			dataType: 'json',
 			success: function (response) {
-				location.reload();
+				// location.reload();
+			//	set flash data after reload
+				window.location.href = "<?php echo base_url('profile/'.$this->session->userdata('user_id')); ?>";
+
+
 			}
 		})
+	}
+
+	if (document.querySelector('.js-alert')) {
+		document.querySelectorAll('.js-alert').forEach(function ($el) {
+			setTimeout(() => {
+				$el.classList.remove('show');
+			}, 2000);
+		});
+		// removeAlert div after 2 seconds
+		setTimeout(() => {
+			document.querySelector('.js-alert').remove();
+		}, 2000);
 	}
 </script>
 </html>
