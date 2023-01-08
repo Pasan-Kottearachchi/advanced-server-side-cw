@@ -31,7 +31,6 @@ class Login extends CI_Controller {
 			$this->load->view('login/login_form');
 		} else {
 			$userDetails = $this->AuthModel->getUserByEmail($username);
-			echo json_encode($userDetails);
 			if ($userDetails != null) {
 				$authenticated = $this->AuthModel->authenticateUser($username, $password);
 				if ($authenticated) {

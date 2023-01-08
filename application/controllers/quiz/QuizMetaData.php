@@ -2,8 +2,8 @@
 
 use Restserver\Libraries\REST_Controller;
 
-require_once APPPATH . 'libraries\REST_Controller.php';
-require_once APPPATH . 'libraries\Format.php';
+require_once APPPATH . 'libraries/REST_Controller.php';
+require_once APPPATH . 'libraries/Format.php';
 
 class QuizMetaData extends REST_Controller
 {
@@ -41,14 +41,5 @@ class QuizMetaData extends REST_Controller
 		$quiz_id = $this->QuizModel->insert_quiz_metadata($quiz_name, $quiz_category, $user_id);
 		$data = array('quiz_id' => $quiz_id);
 		echo json_encode($data);
-
-		//		return the quiz id to the client
-		// $this->response($data, REST_Controller::HTTP_OK);
-
-
-
-		//		echo json_encode($data);
-
-		//		return json_encode($data);
 	}
 }

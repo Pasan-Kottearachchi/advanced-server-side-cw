@@ -170,27 +170,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<button class="submit-answer-btn btn btn-success" onclick="submitUserData()">
 							Submit
 						</button>
-						<!--						<hr>-->
-						<!--						<h5>Additional Details</h5>-->
-						<!--<						show additional user details -->
-						<!--						<div class="row">-->
-						<!--							<div class="col-md-6">-->
-						<!--								<div class="form-group first-name-group">-->
-						<!--									<label for="first_name">Phone Number</label>-->
-						<!--									<input type="text" name="first_name" id="first_name" class="form-control"-->
-						<!--										   value="-->
-						<?php //echo '0123456789'; ?><!--">-->
-						<!--								</div>-->
-						<!--							</div>-->
-						<!--							<div class="col-md-6">-->
-						<!--								<div class="form-group phone-number-group">-->
-						<!--									<label for="phone-number">Phone Number</label>-->
-						<!--									<input type="tel" name="phone-number" id="phone-number" class="form-control">-->
-						<!--									<span class="input-group-addon">Tel</span>-->
-						<!--								</div>-->
-						<!--							</div>-->
-						<!--						</div>-->
-
 					</div>
 				</div>
 			</div>
@@ -214,8 +193,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			},
 			dataType: 'json',
 			success: function (response) {
-				// location.reload();
-			//	set flash data after reload
 				window.location.href = "<?php echo base_url('profile/'.$this->session->userdata('user_id')); ?>";
 
 
