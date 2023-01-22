@@ -95,7 +95,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						type: 'DELETE',
 						dataType: 'json',
 					success: function (response) {
-							alert(response)
 							data = response.data
 							swal({
 								title: data.title,

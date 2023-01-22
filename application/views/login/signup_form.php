@@ -16,7 +16,7 @@
 <div class="login-page">
 	<?php if ($this->session->flashdata('error')) : ?>
 		<div class="alert alert-danger alert-dismissible fade show js-alert" role="alert">
-			<?= $this->session->flashdata('error'); ?>
+			<?= $this->session->flashdata('error'); unset($_SESSION['error']);?>
 		</div>
 	<?php endif; ?>
 	<?php if ($this->session->flashdata('success')) : ?>

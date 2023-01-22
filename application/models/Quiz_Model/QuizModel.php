@@ -12,7 +12,7 @@ class QuizModel extends CI_Model
 	public function insert_quiz_metadata($quiz_name, $quiz_category, $user_id)
 	{
 		$sql = "INSERT INTO quiz (title, quiz_category_id, created_by, archived) VALUES (?, ?, ?, ?)";
-		$this->db->query($sql, array($quiz_name, intval($quiz_category), intval($user_id), 0));
+		$this->db->query($sql, array($quiz_name, intval($quiz_category), intval($user_id), 1));
 		return $this->db->insert_id();
 
 
