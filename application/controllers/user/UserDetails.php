@@ -34,6 +34,12 @@ class UserDetails extends CI_Controller {
 		$this->UserModel->updateUserName(intval($userId), $name);
 		$this->session->set_userdata('name', $name);
 //		redirect(base_url('profile/'.$userId));
+		$data = array(
+			'status' => 'success',
+		);
+		return $this->output->set_content_type('application/json')->set_output(json_encode($data));
+
+
 	}
 
 }

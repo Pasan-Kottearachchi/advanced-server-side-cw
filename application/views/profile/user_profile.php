@@ -193,9 +193,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			},
 			dataType: 'json',
 			success: function (response) {
-				window.location.href = "<?php echo base_url('profile/'.$this->session->userdata('user_id')); ?>";
-
-
+				if (response.status === 'success') {
+					location.reload()
+				}
 			}
 		})
 	}
