@@ -74,20 +74,20 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 /*
-	'hostname' => 'phpmyadmin.ecs.westminster.ac.uk',
-	'port' => 3306,
-	'username' => 'w1761885',
-	'password' => 'EDZAzddnCWYZ',
-	'database' => 'w1761885_0',
-*/
-
-$db['default'] = array(
-	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'port' => 3306,
 	'username' => 'root',
 	'password' => '',
 	'database' => 'quizzy_time',
+*/
+
+$db['default'] = array(
+	'dsn'	=> '',
+	'hostname' => 'phpmyadmin.ecs.westminster.ac.uk',
+	'port' => 3306,
+	'username' => 'w1761885',
+	'password' => 'EDZAzddnCWYZ',
+	'database' => 'w1761885_0',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
