@@ -1,26 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-/*  Helper Styles */
-.body {
-	/*background: #587792;*/
-	margin-top: 0px;
-	font-family: "Roboto", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
 .link {
 	text-decoration: none;
-	font-family: FontAwesome, "Roboto", sans-serif;
+	font-family: FontAwesome, "Alegreya", sans-serif;
 	text-align: center;
 	font-weight: bold;
 	letter-spacing: 1px;
-	/*font-style: normal;*/
 }
 
 .container {
 	margin-top: 10%;
-	margin-left: 20vw;
 }
 
 /* Card Styles */
@@ -32,11 +19,9 @@
 }
 
 .table-header {
-	/*	Get the table header to max width of the screen*/
-	width: 100%;
-	padding-top: 15px;
-	padding-bottom: 50px;
-	margin-top: 70px;
+	margin-left: 16px;
+	margin-right: 16px;
+	padding-bottom: 20px;
 }
 
 /* get the search-form and the add-form on the same line to the right side of the screen */
@@ -56,20 +41,15 @@
 	margin-right: 10px;
 }
 
-.screen-name {
-	float: left;
-	margin-left: 30px;
-}
 .screen-name .heading {
 	font-weight: 700;
 }
 
 .table-div {
-	width: 90vw;
-	margin-left: 5vw;
+	margin-left: 16px;
+	margin-right: 16px;
 	overflow: auto;
 	max-height: 75vh;
-	padding-right: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -121,3 +101,25 @@
 		box-shadow: 0 0 0 0 rgba(90, 153, 212, 0);
 	}
 }
+
+@media (min-width: 992px) {
+	.table-div {
+		width: 80%;
+		margin: auto;
+	}
+
+	.table-header {
+		width: 80%;
+		margin: auto;
+	}
+}
+
+.table-header {
+	margin-top: 120px;
+}
+
+.table-header .heading {
+	color: #797a9e;
+}
+
+
