@@ -16,36 +16,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
-	<!--Display Quiz Marks -->
-	<div class="container">
-		<form id="create-quiz-form">
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="quiz_title_label">Quiz Title:</label>
-				<div class="col-sm-10">
-					<input type="text" class="form-control" id="quiz_title" name="quiz_title" placeholder="Enter Quiz Title">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-3" for="quiz_category_label">Quiz Category:</label>
-				<div class="col-sm-10">
-					<select class="form-control" name="quiz_category" id="quiz_category">
-						<option value="default">Select Category</option>
-						<?php foreach ($quiz_categories as $category) { ?>
-							<option value="<?php echo $category->quiz_category_id; ?>"><?php echo $category->category_name; ?></option>
-						<?php } ?>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" class="btn btn-success" id="createQuizIndexButton">Submit</button>
-				</div>
-			</div>
-		</form>
-
+<div class="table-header">
+	<div class="screen-name">
+		<h1 class="heading">Create New Quiz</h1>
 	</div>
-
-
+</div>
+<div class="table-div">
+	<form id="create-quiz-form">
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="quiz_title_label">Quiz Title:</label>
+			<input type="text" class="form-control" id="quiz_title" name="quiz_title" placeholder="Enter Quiz Title">
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3" for="quiz_category_label">Quiz Category:</label>
+			<select class="form-control" name="quiz_category" id="quiz_category">
+				<option value="default">Select Category</option>
+				<?php foreach ($quiz_categories as $category) { ?>
+					<option value="<?php echo $category->quiz_category_id; ?>"><?php echo $category->category_name; ?></option>
+				<?php } ?>
+			</select>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="button" class="btn btn-success" id="createQuizIndexButton">Submit</button>
+			</div>
+		</div>
+	</form>
+</div>
 </body>
 <script>
 	$(document).ready(function() {

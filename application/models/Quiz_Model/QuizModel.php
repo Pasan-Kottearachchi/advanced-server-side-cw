@@ -37,7 +37,7 @@ class QuizModel extends CI_Model
 	{
 		$sql = "SELECT *
 				FROM quiz
-				WHERE quiz_id = ? and archived = 0";
+				WHERE quiz_id = ?";
 		$query = $this->db->query($sql, array('quiz_id' => $id));
 		return $query->row();
 	}

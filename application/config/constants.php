@@ -84,5 +84,5 @@ defined('EXIT_DATABASE')       or define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      or define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      or define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 // TODO PASAN: Refactor this to the host URL
-const CSS_URL = 'https://w1761885.users.ecs.westminster.ac.uk/quiz-app/';
-//const CSS_URL = 'http://localhost:8080	/quiz-app/';
+//const CSS_URL = 'https://w1761885.users.ecs.westminster.ac.uk/quiz-app/';
+const CSS_URL = 'http://localhost:8080/quiz-app/';
