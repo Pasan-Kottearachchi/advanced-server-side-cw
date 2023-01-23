@@ -1,25 +1,56 @@
-body {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	line-height: 1.42857143;
-	color: #333;
-	background-color: #fff;
-	margin-top: 90px;
+body, .body {
+	font-family: "Alegreya", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
-container {
-	width: 100%;
+.screen-name {
+	display: flex;
+	justify-content: space-between;
 }
+
+.screen-name .heading {
+	font-weight: 700;
+}
+
+.table-header {
+	margin-top: 120px !important;
+	margin-left: 16px;
+	margin-right: 16px;
+	padding-bottom: 20px;
+}
+
+.table-header .heading {
+	color: #797a9e;
+}
+
+.table-div {
+	margin-left: 16px;
+	margin-right: 16px;
+	overflow: auto;
+	max-height: 75vh;
+}
+
+@media (min-width: 992px) {
+	.table-div {
+		width: 80%;
+		margin: auto;
+	}
+
+	.table-header {
+		width: 80%;
+		margin: auto;
+	}
+}
+
+
+
 
 form {
-	margin: auto;
-	width: 800px;
-	padding: 1em;
-	padding-bottom: 20px;
-	margin-top: 3vh;
+
 }
 
 .btn {
-	/*	keep button to right */
 	float: right;
 	margin-right: 20px;
 }

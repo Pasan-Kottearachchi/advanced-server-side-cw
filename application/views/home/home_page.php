@@ -25,7 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<?php endif; ?>
 	<div class="table-header">
 		<div class="screen-name">
-			<h5 class="heading">All Quizes</h5>
+			<h1 class="heading">All Quizzes</h1>
 		</div>
 	</div>
 	<div class="table-div">
