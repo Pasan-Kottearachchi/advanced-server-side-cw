@@ -28,7 +28,7 @@ class QuizModel extends CI_Model
 				FROM `quiz` 
 				left join user 
 				on user.user_id = quiz.created_by 
-				WHERE quiz.created_by != ?";
+				WHERE quiz.created_by != ? AND quiz.archived = 0";
 		$query = $this->db->query($sql, array($current_user_id));
 		return $query->result();
 	}

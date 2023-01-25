@@ -45,11 +45,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<div
 									class="progress-bar progress-bar-striped bg-info"
 									role="progressbar"
-									style="width: <? $quiz->correct_answer_percentage; ?> %"
+									style="width: <?php echo $quiz->correct_answer_percentage.'%'?>"
 									aria-valuemin="0"
 									aria-valuemax="200">
 								<?php if ($quiz->correct_answer_percentage > 0) { ?>
-									<?php echo $quiz->correct_answer_percentage; ?>
+									<?php echo $quiz->correct_answer_percentage. '%'; ?>
 								<?php } ?>
 
 							</div>
